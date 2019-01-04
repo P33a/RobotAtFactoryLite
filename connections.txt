@@ -1,0 +1,44 @@
+RFID
+
+13 - SCK
+12 - MISO
+11 - MOSI
+
+8  - RST
+7  - SDA(SS)
+
+NC   - IRQ
+GND  - GND
+3.3v - 3.3v
+
+
+IRSensor
+
+A0 - IR5
+A1 - IR4
+A2 - IR3
+A3 - IR2
+A4 - IR1
+
+GND - GND
+5v  - VCC
+
+A5 - VBat/Shutdown
+
+Motores 
+A - Left Motor
+B - Right Motor
+A/B1 = 1, A/B2 = 0 -> Forward
+A/B1 = 0, A/B2 = 1 -> Backward
+
+9 - PWMA
+6 - AIN1
+5 - AIN2
+
+10 - PWMB
+4 - BIN1
+3 - BIN2
+
+Solenoid
+
+2 - Sol_In
