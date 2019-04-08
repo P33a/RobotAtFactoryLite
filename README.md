@@ -9,6 +9,6 @@ Robot at Factory Lite Competition files:
 
  - Printable Robot Prototype: 
    - Stl Files
-   - Arduino Demo Code <a href="https://github.com/P33a/SimTwo/tree/master/RobotFactoryLite/rafliteduinoHWLoop">here</a>  
+   - Arduino Demo Code <a target="_blank" href="https://github.com/P33a/SimTwo/tree/master/RobotFactoryLite/rafliteduinoHWLoop">here</a>  
 
 
