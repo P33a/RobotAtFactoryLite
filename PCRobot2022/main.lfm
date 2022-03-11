@@ -1,0 +1,529 @@
+object FMain: TFMain
+  Left = 451
+  Height = 901
+  Top = 115
+  Width = 550
+  Caption = 'PCRobot'
+  ClientHeight = 901
+  ClientWidth = 550
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  SessionProperties = 'CBChartFreeze.Checked;CBComPort.Text;CBIRSeries.Checked;CBRawDebug.Checked;CBRobotPos.Checked;EditLogName.Text;EditRemoteIP.Text;EditStateReq.Text;EditStateReqAlt.Text;EditZpole.Text;Height;Left;Top;Width;CBWheelSpeeds.Checked'
+  LCLVersion = '2.1.0.0'
+  object EditPacketCount: TEdit
+    Left = 464
+    Height = 23
+    Top = 4
+    Width = 80
+    TabOrder = 0
+  end
+  object EditDebug: TEdit
+    Left = 316
+    Height = 23
+    Top = 4
+    Width = 80
+    TabOrder = 1
+  end
+  object MemoDebug: TMemo
+    Left = 248
+    Height = 236
+    Top = 312
+    Width = 296
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 2
+  end
+  object EditZpole: TEdit
+    Left = 368
+    Height = 23
+    Top = 60
+    Width = 80
+    TabOrder = 3
+    Text = '0.2'
+  end
+  object Chart: TChart
+    Left = 4
+    Height = 258
+    Top = 552
+    Width = 540
+    AxisList = <    
+      item
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelFont.Orientation = 900
+        Title.LabelBrush.Style = bsClear
+      end    
+      item
+        Alignment = calBottom
+        Marks.LabelBrush.Style = bsClear
+        Minors = <>
+        Title.LabelBrush.Style = bsClear
+      end>
+    Foot.Brush.Color = clBtnFace
+    Foot.Font.Color = clBlue
+    Title.Brush.Color = clBtnFace
+    Title.Font.Color = clBlue
+    Title.Text.Strings = (
+      'TAChart'
+    )
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    object LSRobotX: TLineSeries
+      LinePen.Color = clGreen
+    end
+    object LSRobotY: TLineSeries
+      LinePen.Color = clRed
+    end
+    object LSRobotTheta: TLineSeries
+      LinePen.Color = 16744448
+    end
+    object LSRobotV: TLineSeries
+    end
+    object LSRobotW: TLineSeries
+    end
+    object LSIR1: TLineSeries
+    end
+    object LSIR2: TLineSeries
+    end
+    object LSIR3: TLineSeries
+    end
+    object LSIR4: TLineSeries
+    end
+    object LSIR5: TLineSeries
+    end
+    object LSEnc1: TLineSeries
+    end
+    object LSEnc2: TLineSeries
+    end
+  end
+  object CBChartFreeze: TCheckBox
+    Left = 4
+    Height = 19
+    Top = 850
+    Width = 53
+    Anchors = [akLeft, akBottom]
+    Caption = 'Freeze'
+    TabOrder = 5
+  end
+  object EditLogName: TEdit
+    Left = 148
+    Height = 23
+    Top = 850
+    Width = 80
+    Anchors = [akLeft, akBottom]
+    TabOrder = 6
+    Text = 'Log_'
+  end
+  object BSaveLog: TButton
+    Left = 64
+    Height = 25
+    Top = 848
+    Width = 75
+    Anchors = [akLeft, akBottom]
+    Caption = 'Save Log'
+    OnClick = BSaveLogClick
+    TabOrder = 7
+  end
+  object EditRemoteIP: TEdit
+    Left = 76
+    Height = 23
+    Top = 4
+    Width = 100
+    TabOrder = 8
+    Text = '192.168.1.197'
+  end
+  object Label2: TLabel
+    Left = 4
+    Height = 15
+    Top = 8
+    Width = 48
+    Caption = 'Robot IP:'
+    ParentColor = False
+  end
+  object BUDPConnect: TButton
+    Left = 184
+    Height = 23
+    Top = 4
+    Width = 60
+    Caption = 'Connect'
+    OnClick = BUDPConnectClick
+    TabOrder = 9
+  end
+  object BUDPDisconnect: TButton
+    Left = 248
+    Height = 23
+    Top = 4
+    Width = 60
+    Caption = 'Disc.'
+    OnClick = BUDPDisconnectClick
+    TabOrder = 10
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 878
+    Width = 550
+    Panels = <>
+  end
+  object CBRawDebug: TCheckBox
+    Left = 464
+    Height = 19
+    Top = 32
+    Width = 80
+    Caption = 'Raw Debug'
+    TabOrder = 12
+  end
+  object BSetState: TButton
+    Left = 248
+    Height = 23
+    Top = 60
+    Width = 60
+    Caption = 'Set State'
+    OnClick = BSetStateClick
+    TabOrder = 13
+  end
+  object EditStateReq: TEdit
+    Left = 316
+    Height = 23
+    Top = 60
+    Width = 44
+    TabOrder = 14
+  end
+  object SGRobot: TStringGrid
+    Left = 4
+    Height = 490
+    Top = 60
+    Width = 240
+    AutoFillColumns = True
+    ColCount = 3
+    DefaultRowHeight = 18
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+    RowCount = 32
+    ScrollBars = ssNone
+    TabOrder = 15
+    ColWidths = (
+      64
+      86
+      86
+    )
+    Cells = (
+      29
+      0
+      0
+      'Robot'
+      0
+      1
+      'Delta'
+      0
+      2
+      'State'
+      0
+      3
+      'PWM 1'
+      0
+      4
+      'PWM 2'
+      0
+      5
+      'Enc 1'
+      0
+      6
+      'Enc 2'
+      0
+      7
+      'IR1'
+      0
+      8
+      'IR2'
+      0
+      9
+      'IR3'
+      0
+      10
+      'IR4'
+      0
+      11
+      'IR5'
+      0
+      12
+      'Senc 1'
+      0
+      13
+      'Senc 2'
+      0
+      14
+      'T1'
+      0
+      15
+      'T2'
+      0
+      16
+      'v'
+      0
+      17
+      'ω'
+      0
+      18
+      'x'
+      0
+      19
+      'y'
+      0
+      20
+      'θ'
+      0
+      21
+      'Kp'
+      0
+      22
+      'Ki'
+      0
+      23
+      'Kd'
+      0
+      24
+      'Kf'
+      0
+      25
+      'Touch'
+      0
+      26
+      'Solenoid'
+      1
+      0
+      'Read'
+      2
+      0
+      'Write'
+    )
+  end
+  object BSetStateAlt: TButton
+    Left = 248
+    Height = 23
+    Top = 87
+    Width = 60
+    Caption = 'Set State'
+    OnClick = BSetStateAltClick
+    TabOrder = 16
+  end
+  object EditStateReqAlt: TEdit
+    Left = 316
+    Height = 23
+    Top = 86
+    Width = 44
+    TabOrder = 17
+  end
+  object BClearEncoderAcc: TButton
+    Left = 248
+    Height = 23
+    Top = 114
+    Width = 60
+    Caption = 'Clear Enc'
+    OnClick = BClearEncoderAccClick
+    TabOrder = 18
+  end
+  object BSetT1T2: TButton
+    Left = 316
+    Height = 23
+    Top = 114
+    Width = 60
+    Caption = 'Set T1 T2'
+    OnClick = BSetT1T2Click
+    TabOrder = 19
+  end
+  object Label1: TLabel
+    Left = 4
+    Height = 15
+    Top = 36
+    Width = 56
+    Caption = 'COM Port:'
+    ParentColor = False
+  end
+  object CBComPort: TComboBox
+    Left = 76
+    Height = 23
+    Top = 32
+    Width = 100
+    ItemHeight = 15
+    TabOrder = 20
+    Text = 'COM9'
+  end
+  object BOpenComPort: TButton
+    Left = 184
+    Height = 23
+    Top = 32
+    Width = 60
+    Caption = 'Open'
+    OnClick = BOpenComPortClick
+    TabOrder = 21
+  end
+  object BCloseComPort: TButton
+    Left = 248
+    Height = 23
+    Top = 32
+    Width = 60
+    Caption = 'Close'
+    OnClick = BCloseComPortClick
+    TabOrder = 22
+  end
+  object BRefreshComPorts: TButton
+    Left = 316
+    Height = 23
+    Top = 32
+    Width = 59
+    Caption = 'Refresh'
+    OnClick = BRefreshComPortsClick
+    TabOrder = 23
+  end
+  object Label3: TLabel
+    Left = 416
+    Height = 15
+    Top = 8
+    Width = 43
+    Caption = 'Packets:'
+    ParentColor = False
+  end
+  object BSetPWMs: TButton
+    Left = 248
+    Height = 23
+    Top = 141
+    Width = 60
+    Caption = 'Set PWM'
+    OnClick = BSetPWMsClick
+    TabOrder = 24
+  end
+  object BSetRobotVW: TButton
+    Left = 248
+    Height = 23
+    Top = 168
+    Width = 60
+    Caption = ' Set vω'
+    OnClick = BSetRobotVWClick
+    TabOrder = 25
+  end
+  object BSetRobotXYTheta: TButton
+    Left = 248
+    Height = 23
+    Top = 196
+    Width = 60
+    Caption = 'Set XYθ'
+    OnClick = BSetRobotXYThetaClick
+    TabOrder = 26
+  end
+  object BSetRobotPID: TButton
+    Left = 248
+    Height = 23
+    Top = 224
+    Width = 60
+    Caption = 'Set PID'
+    OnClick = BSetRobotPIDClick
+    TabOrder = 27
+  end
+  object Button_ClearChart: TButton
+    Left = 464
+    Height = 25
+    Top = 848
+    Width = 75
+    Anchors = [akRight, akBottom]
+    Caption = 'Clear Chart'
+    OnClick = Button_ClearChartClick
+    TabOrder = 28
+  end
+  object BRobotStop: TButton
+    Left = 464
+    Height = 23
+    Top = 60
+    Width = 80
+    Caption = 'Stop Robot'
+    OnClick = BRobotStopClick
+    TabOrder = 29
+  end
+  object BSetRobotVW0: TButton
+    Left = 316
+    Height = 23
+    Top = 168
+    Width = 60
+    Caption = 'Zero vω'
+    OnClick = BSetRobotVW0Click
+    TabOrder = 30
+  end
+  object CBIRSeries: TCheckBox
+    Left = 272
+    Height = 19
+    Top = 824
+    Width = 67
+    Anchors = [akLeft, akBottom]
+    Caption = 'IR Values'
+    TabOrder = 31
+  end
+  object CBRobotSpeeds: TCheckBox
+    Left = 84
+    Height = 19
+    Top = 824
+    Width = 92
+    Anchors = [akLeft, akBottom]
+    Caption = 'Robot Speeds'
+    TabOrder = 32
+  end
+  object BSetRobotSolenoid: TButton
+    Left = 248
+    Height = 23
+    Top = 252
+    Width = 60
+    Caption = 'Solenoid'
+    OnClick = BSetRobotSolenoidClick
+    TabOrder = 33
+  end
+  object CBEncoders: TCheckBox
+    Left = 4
+    Height = 19
+    Top = 824
+    Width = 68
+    Anchors = [akLeft, akBottom]
+    Caption = 'Encoders'
+    TabOrder = 34
+  end
+  object CBRobotPos: TCheckBox
+    Left = 184
+    Height = 19
+    Top = 824
+    Width = 74
+    Anchors = [akLeft, akBottom]
+    Caption = 'Robot Pos'
+    TabOrder = 35
+  end
+  object UDP: TLUDPComponent
+    Port = 4224
+    OnReceive = UDPReceive
+    OnError = UDPError
+    Timeout = 0
+    Left = 232
+    Top = 544
+  end
+  object JSONPropStorage: TJSONPropStorage
+    StoredValues = <>
+    JSONFileName = 'config.json'
+    Formatted = True
+    Left = 408
+    Top = 468
+  end
+  object Timer: TTimer
+    Interval = 100
+    OnTimer = TimerTimer
+    Left = 232
+    Top = 436
+  end
+  object Serial: TSdpofpSerial
+    Active = False
+    BaudRate = br115200
+    AltBaudRate = 0
+    DataBits = db8bits
+    Parity = NoneParity
+    FlowControl = []
+    StopBits = sbOne
+    Device = 'COM1'
+    OnRxData = SerialRxData
+    Left = 232
+    Top = 488
+  end
+end

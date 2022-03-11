@@ -1,0 +1,18 @@
+#define ENC1_A 27
+#define ENC1_B 14
+
+#define ENC2_A 19
+#define ENC2_B 23
+
+int analog_pins[5] = {33, 32, 39, 36, 34};
+
+Blue   IR1 IO33
+Yellow IR2 IO32
+Orange IR3 IO39
+Green  IR4 IO36
+White  IR5 IO34
+
+#define TOUCHSW 12
+
+M1              M2
+Black Red       Black Red 
