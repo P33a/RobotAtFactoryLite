@@ -1,8 +1,8 @@
 //use <solenoid_support.scad>
 
 base_h = 4;
-base_len = 150;
-base_width = 85;
+base_len = 120;
+base_width = 110;
 
 corner_r = 5;
 
@@ -23,7 +23,7 @@ pillar_holes = [
   [front - corner_r, left - corner_r], 
   [front - corner_r, right + corner_r], 
   [back + corner_r, left - corner_r], 
-  [back + corner_r - 2, 0], 
+  //[back + corner_r - 2, 0], 
   [back + corner_r, right + corner_r]
 
 ];
@@ -128,6 +128,14 @@ module motor_support() {
     translate([0, -19/2 - motor_wall_width/2, motor_base_h])
     cube([motor_wall_len + 1, 19, motor_h + 1], center = true); 
   }
+  
+  // encoder protection
+  disp = 43;
+  translate([-disp -10, -10.5, motor_base_h/2])
+  cube([3, motor_wall_width + 17, motor_h + motor_base_h + 6], center = true); 
+
+  #translate([- disp -0.5, -23, motor_base_h/2])
+  cube([motor_wall_width + 17,3,  motor_h + motor_base_h + 6], center = true); 
 }
 
 module arduino() {
@@ -147,11 +155,13 @@ module LR_bot(){
       round_base(base_len, base_width, base_h, corner_r);
       //#cube([base_len, base_width, base_h], center = true);
       
-      translate([front - (30 + motor_wall_len/2), right + motor_wall_width/2 + 19, motor_h/2 + base_h/2])
+      translate([back + (30 + motor_wall_len/2), right + motor_wall_width/2 + 22, motor_h/2 + base_h/2])
+      rotate([0, 0, 180])
+      mirror([0, 1, 0])
       motor_support();
       
-      mirror([0, 1, 0])
-      translate([front - (30 + motor_wall_len/2), right + motor_wall_width/2 + 19, motor_h/2 + base_h/2])
+      translate([back + (30 + motor_wall_len/2), left - motor_wall_width/2 - 22, motor_h/2 + base_h/2])
+      rotate([0, 0, 180])
       motor_support();
       
       //translate([10, 0, -5])
@@ -172,7 +182,7 @@ module LR_bot(){
       cube([IR_wall, IR_wall_width, IR_z], center = true);
 
       // Extra support      
-      #translate([front - IR_wall/2, IR_wall_width/2 - 4/2, base_h/2])
+      translate([front - IR_wall/2, IR_wall_width/2 - 4/2, base_h/2])
       rotate([90, 0, 180])
       linear_extrude(height = 4, center = true, convexity = 10, twist = 0)
       polygon(points = [[0,0],[20,0],[0,IR_z]]);
@@ -182,27 +192,6 @@ module LR_bot(){
       linear_extrude(height = 4, center = true, convexity = 10, twist = 0)
       polygon(points = [[0,0],[20,0],[0,IR_z]]);
       
-      // Switch Support
-      //translate([front + 5/2 + 16, -IR_wall_width/2 + 5/2, base_h/2 + IR_z/2 - base_h/2 + 16])
-      //cube([5, 5, IR_z + base_h], center = true);    
-
-      //translate([front - IR_wall/2 + 1, 0, motor_h/2 + base_h/2 + 11.5 + 5 - 26/2])  
-      //rotate([0, 0, 90])
-      //solenoid_support();
-      
-      // Solenoid
-      //translate([16, 0, 16])
-      //translate([front + 15/2, 0, 18])
-      //rotate([0, 90, 0])
-      //cylinder(d = 1, h = 15, center = true);
-      
-      //translate([front, 0, 21])
-      //rotate([0, 90, -90])
-      //ratf_solenoid();
-
-      // pedestral bateria 42 x 76 x 6
-      //translate([-45, 0, base_h/2 + 6/2])
-      //cube([42, 76, 6], center = true);
     }
     
     
@@ -213,14 +202,6 @@ module LR_bot(){
     translate([front - IR_wall/2, 0, 28])
     rotate([0, -30, 0])
     cube([30, 21, 10], center = true);
-
-    //translate([front - IR_wall/2, -10, 10])
-    //rotate([0, 90, 0])
-    //cylinder(d = 2.8, h = 20, center = true);
-
-    //translate([front - IR_wall/2, 10, 10])
-    //rotate([0, 90, 0])
-    //cylinder(d = 2.8, h = 20, center = true);
     
     // Solenoid holes
     translate([front - IR_wall/2, 6, 10])
@@ -266,47 +247,35 @@ module LR_bot(){
     rotate([0, -30, 0])
     cylinder(d = 2, h = 20, center = true);    
     
-    //translate([back + 20, 0, 0])  
-    //place_things(ball_holes)
-    //cylinder(d = 2.5, h = 2 * base_h, center = true);
-    
-    // slider support
-    slid_x = -37.5;
-    slid_y = -15;
-    
-    slid_holes = [
-      [ slid_x/2, -slid_y/2],
-      [ slid_x/2,  slid_y/2]
-      //[ slid_x/2 - 4,  0]
-    ];
-    
-    place_things(slid_holes)
-    cylinder(d = 3.5, h = 2 * base_h, center = true); 
     
     bat_x = 19.3;
     bat_y = 55.3;
+
+    bat_x2 = 21.5;
+    bat_y2 = 54.6;
     
     bat_holes = [
-//      [  bat_x/2, -bat_y/2],
-//      [  bat_x/2,  bat_y/2],
+      [  bat_x2/2, -bat_y2/2],
+      [  bat_x2/2,  bat_y2/2],
       [  bat_x/2,  0],
-      [ -bat_x/2,  0]
-//      [ -bat_x/2, -bat_y/2],
-//      [ -bat_x/2,  bat_y/2] 
+      [ -bat_x/2,  0],
+      [ -bat_x2/2, -bat_y2/2],
+      [ -bat_x2/2,  bat_y2/2] 
     ];
     
-    translate([back + 27, 0, 0])
+    translate([back + 76/2 + 2, 0, 0])
+    rotate([0, 0, 90])
     place_things(bat_holes)
     cylinder(d = 2.2, h = 5 * base_h, center = true);   
   
 
     // Switch hole
-    translate([front - 15, base_width/2 - 14, 0])
+    translate([front - 7, base_width/2 - 18, 0])
     cylinder(d = 6.2, h = 2 * base_h, center = true); 
 
     // Central hole
-    translate([front - 40, 0, 0])  
-    round_base(30, 25, 100, corner_r);  
+    translate([front - 30, 0, 0])  
+    round_base(15, 20, 100, corner_r);  
   }
   
   
