@@ -83,8 +83,8 @@ module ratf_solenoid() {
       switch_upport();
       
       
-      translate([-11.5, 18.5, -14])
-      switch_upport();
+      //translate([-11.5, 18.5, -14])
+      //switch_upport();
     }    
   
     

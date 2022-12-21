@@ -27,7 +27,7 @@
   POSSIBILITY OF SUCH DAMAGE. */
   
 //use <solenoid_support.scad>
-  
+
 base_h = 4;
 base_len = 120;
 base_width = 110;
@@ -321,8 +321,12 @@ module LR_bot(){
     translate([back + 76/2 + 2, 0, 0])
     rotate([0, 0, 90])
     place_things(bat_holes)
-    cylinder(d = 2.2, h = 5 * base_h, center = true);   
-  
+    hull() {
+      translate([-1, 0, 0])
+      cylinder(d = 2.0, h = 5 * base_h, center = true);   
+      translate([1, 0, 0])
+      cylinder(d = 2.0, h = 5 * base_h, center = true);   
+    }
 
     // Switch hole
     translate([front - 7, base_width/2 - 18, 0])
